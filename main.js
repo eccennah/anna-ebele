@@ -31,3 +31,45 @@ document.querySelectorAll('section').forEach(section => {
     section.classList.add('fade-in-section');
     observer.observe(section);
 });
+
+// Show header name only on first and last sections
+const logo = document.querySelector('.logo');
+const heroSection = document.querySelector('.hero');
+const lastSection = document.querySelector('#contact');
+const pageFooter = document.querySelector('footer');
+
+if (logo && heroSection && lastSection) {
+    let heroInView = true;
+    let endInView = false;
+
+    const updateLogoVisibility = () => {
+        const shouldShow = heroInView || endInView;
+        logo.classList.toggle('is-hidden', !shouldShow);
+    };
+
+    const visibilityObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.target === heroSection) {
+                heroInView = entry.isIntersecting;
+            }
+
+            if (entry.target === lastSection || entry.target === pageFooter) {
+                endInView = entry.isIntersecting;
+            }
+        });
+
+        updateLogoVisibility();
+    }, {
+        root: null,
+        threshold: 0.15
+    });
+
+    visibilityObserver.observe(heroSection);
+    visibilityObserver.observe(lastSection);
+
+    if (pageFooter) {
+        visibilityObserver.observe(pageFooter);
+    }
+
+    updateLogoVisibility();
+}
