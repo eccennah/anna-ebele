@@ -34,6 +34,8 @@ document.querySelectorAll('section').forEach(section => {
 
 // Show header name only on first and last sections
 const logo = document.querySelector('.logo');
+const pageHeader = document.querySelector('header');
+const pageNav = document.querySelector('header nav');
 const heroSection = document.querySelector('.hero');
 const lastSection = document.querySelector('#contact');
 const pageFooter = document.querySelector('footer');
@@ -45,6 +47,14 @@ if (logo && heroSection && lastSection) {
     const updateLogoVisibility = () => {
         const shouldShow = heroInView || endInView;
         logo.classList.toggle('is-hidden', !shouldShow);
+
+        if (pageHeader) {
+            pageHeader.classList.toggle('on-hero', heroInView);
+        }
+
+        if (pageNav) {
+            pageNav.classList.toggle('is-hidden', !shouldShow);
+        }
     };
 
     const visibilityObserver = new IntersectionObserver((entries) => {

@@ -103,7 +103,7 @@ header {
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: var(--accent-color);
+    color: #000000;
     text-shadow: none;
     transition: opacity 0.3s ease, visibility 0.3s ease, color 0.3s ease;
 }
@@ -117,6 +117,13 @@ nav ul {
     display: flex;
     gap: var(--spacing-md);
     list-style: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+nav.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 nav a {
@@ -124,7 +131,7 @@ nav a {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     opacity: 0.9;
-    color: var(--accent-color);
+    color: #000000;
     text-shadow: none;
     font-weight: 500;
     transition: font-weight 0.2s ease, opacity 0.3s ease, color 0.3s ease;
@@ -132,7 +139,7 @@ nav a {
 
 nav a:hover {
     opacity: 1;
-    color: var(--accent-color);
+    color: #000000;
 }
 
 header.on-hero nav a {
